@@ -1,2 +1,2 @@
 # hello-world
-The is a third test for committing, pulling and merging!
+A third branch. Just for show.
