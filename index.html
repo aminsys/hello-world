@@ -2,12 +2,39 @@
 <html lang="sw">
 <head>
     <meta charset="UTF-8">
-    <script src = "someScript.js"></script>
-    <title>A small world</title>
+    <script src = "index.js"></script>
+    <!--script src="/socket.io/socket.io.js"></script-->
+    <title>Chat app</title>
+    <style>
+        * {margin : 0; padding: 0; box-sizing: border-box;}
+        body {font: 13px Helvetica, Arial;}
+        form {background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%;}
+        form input {border: 0; padding: 10px; width: 90%; margin-right: .5%;}
+        form button {width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px;}
+
+        #message {list-style-type: none; margin: 0; padding: 0;}
+        #message li {padding: 5px 10px;}
+        #message li:nth-child(odd) {background: #eee;}
+    </style>
 </head>
 
 <body>
-<h1>Welcome</h1>
-<p>Å andra öar.</p>
+<ul id="message"></ul>
+<form action="">
+    <input id="m" autocomplete="off" />
+    <button>Send</button>
+</form>
+
+<!-- Loading the socket.io-client-->
+<script src="socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+    var socket = io();
+    $('form').submit(function(){
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+    });
+</script>
 </body>
 </html>
